@@ -1,4 +1,4 @@
-package Vertx.githubDemo;
+package vertx.githubDemo;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Address;

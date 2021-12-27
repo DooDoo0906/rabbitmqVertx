@@ -1,4 +1,4 @@
-package Vertx.ultiliities.Operation;
+package vertx.ultiliities.Operation;
 
 public class Operation {
     public double operation(double a, double b, String op){

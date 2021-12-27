@@ -1,14 +1,12 @@
-package Vertx;
+package vertx;
 
-import Vertx.ultiliities.Operation.Operation;
-import Vertx.ultiliities.validation.Validation;
+import vertx.ultiliities.Operation.Operation;
+import vertx.ultiliities.validation.Validation;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rabbitmq.RabbitMQClient;
 import io.vertx.rabbitmq.RabbitMQConsumer;
 import io.vertx.rabbitmq.RabbitMQOptions;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Consumer extends AbstractVerticle {
     @Override
