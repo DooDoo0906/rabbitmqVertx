@@ -1,8 +1,9 @@
-package rabbitmq_rcp;
+package rabbitmq_basic;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.DeliverCallback;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -18,10 +19,11 @@ public class Consumer {
              Channel channel = connection.createChannel()) {
             String myQueue="aaaaaa";
             channel.queueDeclare(myQueue, true, false, false, null);
-            ActualConsumer consumer = new ActualConsumer(channel);
-            String consumerTag = channel.basicConsume(myQueue, true, consumer);
-            //stop the consumer
-            channel.basicCancel(consumerTag);
+            DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                String message = new String(delivery.getBody(), "UTF-8");
+                System.out.println(" [x] Received '" + message + "'");
+            };
+            channel.basicConsume(myQueue, true, deliverCallback, consumerTag -> { });
         }
     }
 }

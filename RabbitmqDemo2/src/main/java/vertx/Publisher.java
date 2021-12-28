@@ -24,7 +24,8 @@ public class Publisher extends AbstractVerticle {
                 System.out.println("RabbitMQ successfully connected!");
                 client.basicPublish("", "aaaaaa", msg.toBuffer(), pubResult -> {
                     if (pubResult.succeeded()) {
-                        System.out.println("Message published !");
+                        System.out.println("Message published :");
+                        System.out.println(msg.encodePrettily());
                     } else {
                         pubResult.cause().printStackTrace();
                     }

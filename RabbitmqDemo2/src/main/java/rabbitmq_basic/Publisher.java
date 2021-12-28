@@ -1,4 +1,4 @@
-package rabbitmq_rcp;
+package rabbitmq_basic;
 
 import com.rabbitmq.client.*;
 import io.vertx.core.json.JsonObject;

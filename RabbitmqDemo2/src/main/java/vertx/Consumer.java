@@ -31,7 +31,6 @@ public class Consumer extends AbstractVerticle {
                     //Receiving message
                     RabbitMQConsumer mqConsumer = rabbitMQConsumerAsyncResult.result();
                     mqConsumer.handler(message -> {
-
                         JsonObject param = new JsonObject(message.body());
                         if (valid.isNumeric(String.valueOf(param.getValue("a"))) &&
                                 valid.isNumeric(String.valueOf(param.getValue("b")))) {
@@ -40,7 +39,7 @@ public class Consumer extends AbstractVerticle {
                             String op = param.getString("op", "+");
                             if (valid.validateOpe(b, op) == 1) {
                                 double result = ope.operation(a, b, op);
-                                System.out.println("Got message: " + result);
+                                System.out.println("Result: " + result);
                             } else if (valid.validateOpe(b, op) == 0) {
                                 System.out.println("You can't put 0 under the denominator");
                             } else {
@@ -54,6 +53,7 @@ public class Consumer extends AbstractVerticle {
                     rabbitMQConsumerAsyncResult.cause().printStackTrace();
                 }
             });
+
         });
     }
 }
